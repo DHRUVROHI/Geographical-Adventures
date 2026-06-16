@@ -11,7 +11,7 @@ public class Player_Planet_Controller : MonoBehaviour
     public float max_speed;
     public float acceleration;
     
-    float forward;
+    float horizontal;
     float vertical;
 
     Vector3 movepos;
@@ -58,9 +58,10 @@ public class Player_Planet_Controller : MonoBehaviour
     public void updatemovementInput(Vector2 move)
 
     {
-        forward = move.x;
+        horizontal = move.x;
         vertical = move.y;
-        movepos = new Vector3( forward, 0, vertical);
+        desiredspeed = move.magnitude > 0 ? max_speed : 0f;
+        movepos =  transform.forward * vertical + transform.right * horizontal;
         basetargetspeed = Mathf.MoveTowards(basetargetspeed, desiredspeed, acceleration * Time.deltaTime);
         basetargetspeed = Mathf.Clamp(basetargetspeed, min_speed, max_speed);
         
@@ -69,7 +70,7 @@ public class Player_Planet_Controller : MonoBehaviour
     public void HandleMovement()
     {
         currentspeed = Mathf.Lerp(currentspeed, basetargetspeed, 1 - Mathf.Pow(speedsmooting, Time.deltaTime));
-        smoothedturnspeed = Mathf.SmoothDamp(smoothedturnspeed, vertical * turnspeed, ref refsmoothturn, smoothturntime);
+        smoothedturnspeed = Mathf.SmoothDamp(smoothedturnspeed, horizontal * turnspeed, ref refsmoothturn, smoothturntime);
         float turnAmount = smoothedturnspeed * Time.deltaTime;
         updateposition();
         updaterotation(turnAmount);
@@ -79,12 +80,12 @@ public class Player_Planet_Controller : MonoBehaviour
 
     public void updateposition()
     {
-        Vector3 newpos = transform.position + (movepos * currentspeed);
+        Vector3 newpos = transform.position + movepos * currentspeed * Time.deltaTime;
         if(isspherical)
         {
             newpos = newpos.normalized * worldRadius;
         }
-        transform.position = newpos;
+        transform.position = newpos ;
 
     }
 
