@@ -7,6 +7,7 @@ public class PlayerInputHandler : MonoBehaviour
 {
 
 	public Player player;
+	public Player_Planet_Controller playerplanetController;
 	public GeoGame.Quest.QuestSystem questSystem;
 	public GameCamera gameCamera;
 	public UIManager uIManager;
@@ -42,7 +43,7 @@ public class PlayerInputHandler : MonoBehaviour
 		float accelerateDir = playerActions.PlayerControls.Speed.ReadValue<float>();
 		bool boosting = playerActions.PlayerControls.Boost.IsPressed();
 		player.UpdateMovementInput(movementInput, accelerateDir, boosting);
-
+		playerplanetController.updatemovementInput(movementInput);
 
 		if (playerActions.PlayerControls.DropPackage.WasPressedThisFrame())
 		{
