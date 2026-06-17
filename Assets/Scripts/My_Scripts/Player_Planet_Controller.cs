@@ -9,12 +9,14 @@ public class Player_Planet_Controller : MonoBehaviour
     public bool isspherical = true;
     public float min_speed;
     public float max_speed;
+  //  public float rotation_speed;
     public float acceleration;
     
     float horizontal;
     float vertical;
 
     Vector3 movepos;
+    Vector3 movedir;
 
 
     float currentspeed;
@@ -26,6 +28,8 @@ public class Player_Planet_Controller : MonoBehaviour
     public float smoothturntime;
     float smoothedturnspeed;
     float refsmoothturn;
+
+    
  
 
     float worldRadius;
@@ -62,6 +66,7 @@ public class Player_Planet_Controller : MonoBehaviour
         vertical = move.y;
         desiredspeed = move.magnitude > 0 ? max_speed : 0f;
         movepos =  transform.forward * vertical + transform.right * horizontal;
+        movedir = movepos.normalized;
         basetargetspeed = Mathf.MoveTowards(basetargetspeed, desiredspeed, acceleration * Time.deltaTime);
         basetargetspeed = Mathf.Clamp(basetargetspeed, min_speed, max_speed);
         
@@ -94,6 +99,9 @@ public class Player_Planet_Controller : MonoBehaviour
         if (isspherical)
         {
             Vector3 gravityup = transform.position.normalized;
+          //  Quaternion TargetRotaton =  Quaternion.LookRotation(movedir, gravityup);
+
+            //transform.rotation = Quaternion.Slerp(transform.rotation, TargetRotaton, turnspeed * Time.deltaTime);
             transform.RotateAround(transform.position, gravityup, turnamount);
            // transform.LookAt((transform.position + transform.forward * 10).normalized * worldRadius , gravityup);
             transform.rotation = Quaternion.FromToRotation(transform.up, gravityup) * transform.rotation;
@@ -102,4 +110,23 @@ public class Player_Planet_Controller : MonoBehaviour
 
 
     }
+
+    public float speedT
+    {
+         get
+            {
+            return Mathf.InverseLerp(min_speed, max_speed, currentspeed);
+        }
+
+      
+    }
+
+    public Vector3 Gravityup
+    {
+        get
+        {
+           return (isspherical)?transform.position.normalized : Vector3.up  ;
+        }
+    }
+
 }
