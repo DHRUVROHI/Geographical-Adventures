@@ -1,18 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class ArtifactData : MonoBehaviour
+[ CreateAssetMenuAttribute(fileName = "Artifact" , menuName ="Artifacts/Artifactsobject")]
+public class ArtifactData : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string ArtifactName;
+    public string Description;
+    public float weight;
+    public Image icon;
+    public Vector3 holdoffset;
+    public float groundoffset;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+
 }

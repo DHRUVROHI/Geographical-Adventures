@@ -29,6 +29,9 @@ public class Player_Planet_Controller : MonoBehaviour
     float smoothedturnspeed;
     float refsmoothturn;
 
+    public float artifactweight;
+
+
     
  
 
@@ -44,12 +47,13 @@ public class Player_Planet_Controller : MonoBehaviour
         basetargetspeed = Mathf.Lerp(min_speed, max_speed, 0.35f);
         currentspeed = basetargetspeed;
         desiredspeed = 15f;
-       
+      
  
     }
     void Start()
     {
-        
+        PickupArtifact.Artifact_D += onpickupartifact;
+        PickupArtifact.Artifact_Dropped += ondropartifact;
     }
 
     // Update is called once per frame
@@ -58,7 +62,14 @@ public class Player_Planet_Controller : MonoBehaviour
  
         HandleMovement();
     }
-
+    public void onpickupartifact(ArtifactData data)
+    {
+        artifactweight = data.weight;
+    }
+    public void ondropartifact(ArtifactData data)
+    {
+        artifactweight = 0;
+    }
     public void updatemovementInput(Vector2 move)
 
     {
@@ -67,7 +78,7 @@ public class Player_Planet_Controller : MonoBehaviour
         desiredspeed = move.magnitude > 0 ? max_speed : 0f;
         movepos =  transform.forward * vertical + transform.right * horizontal;
         movedir = movepos.normalized;
-        basetargetspeed = Mathf.MoveTowards(basetargetspeed, desiredspeed, acceleration * Time.deltaTime);
+        basetargetspeed = Mathf.MoveTowards(basetargetspeed, desiredspeed - artifactweight, acceleration * Time.deltaTime);
         basetargetspeed = Mathf.Clamp(basetargetspeed, min_speed, max_speed);
         
      
