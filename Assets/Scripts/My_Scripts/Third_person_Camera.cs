@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Third_person_Camera : MonoBehaviour
 {
-
+    public event System.Action<Camera> gameCameraUpdateComplete;
     public float fovslow;
     public float fovfast;
-
+ 
 
 
     [Header("Alternate View Settings")]

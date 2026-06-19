@@ -11,6 +11,11 @@ public class UI_Manager : MonoBehaviour
     public TMP_Text Artifactweight;
     public TMP_Text Player_corrdinates;
     public Image Artifactimage;
+
+    public TMP_Text Monumentname;
+    public TMP_Text Monumentcity;
+
+
     public Transform player;
     public float lookaheadDst = 5;
     Vector2 playerTexCoord;
@@ -28,10 +33,15 @@ public class UI_Manager : MonoBehaviour
         PickupArtifact.Artifact_D += updateArtifactweight;
         PickupArtifact.Artifact_D += updateArtifactImage;
 
+        Monumentinteraction.Monumentexitrregiondata += updateMonumentname;
+        Monumentinteraction.Monumentexitrregiondata += updateMonumentcity;
+
+
+
     }
 
-    // Update is called once per frame
-    void Update()
+// Update is called once per frame
+void Update()
     {
         bool uiisactive = GameController.IsState(GameState.Playing);
             {
@@ -59,10 +69,19 @@ public class UI_Manager : MonoBehaviour
 
     public void updatePlayerCorrdinates()
     {
-        Player_corrdinates.text = " " + longitude + "," + " " +  latitude;
-
-
-
+        Player_corrdinates.text = " " + $"Lat: {longitude:F2}" + "," + " " + $"Lat: {latitude:F2}";
 
     }
+
+    public void updateMonumentname(MonumentData monument)
+    {
+        Monumentname.text = monument.Monumentname;
+    }
+    public void updateMonumentcity(MonumentData monument)
+    {
+        Monumentcity.text = "" + monument.Monumentcity;
+    }
+   
+
+
 }

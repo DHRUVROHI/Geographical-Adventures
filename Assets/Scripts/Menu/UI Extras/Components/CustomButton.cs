@@ -36,7 +36,8 @@ public class CustomButton : Button
 		if (changeTextOnMouseOver)
 		{
 			SetLabel($"<   {localizer.currentValue}   >");
-		}
+            
+        }
 		onPointerEnter?.Invoke();
 	}
 

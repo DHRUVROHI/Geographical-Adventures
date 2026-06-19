@@ -40,19 +40,19 @@ namespace GeoGame.Quest
 
 		void UpdateTimer()
 		{
-			timer.gameObject.SetActive(!questSystem.InEndlessMode);
-			if (!questSystem.InEndlessMode)
-			{
-				int seconds = (int)(questSystem.TimeRemaining % 60);
-				int minutes = (int)(questSystem.TimeRemaining / 60) % 60;
-				// Update timer (but avoid allocating every frame)
-				if (seconds != timerSecondsOld || minutes != timerMinutesOld)
-				{
-					timer.text = $"{minutes:00}:{seconds:00}";
-					timerSecondsOld = seconds;
-					timerMinutesOld = minutes;
-				}
-			}
+			//timer.gameObject.SetActive(!questSystem.InEndlessMode);
+			//if (!questSystem.InEndlessMode)
+			//{
+			//	int seconds = (int)(questSystem.TimeRemaining % 60);
+			//	int minutes = (int)(questSystem.TimeRemaining / 60) % 60;
+			//	// Update timer (but avoid allocating every frame)
+			//	if (seconds != timerSecondsOld || minutes != timerMinutesOld)
+			//	{
+			//		timer.text = $"{minutes:00}:{seconds:00}";
+			//		timerSecondsOld = seconds;
+			//		timerMinutesOld = minutes;
+			//	}
+			//}
 		}
 
 

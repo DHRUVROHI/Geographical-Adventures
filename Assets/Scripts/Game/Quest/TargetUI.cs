@@ -18,11 +18,16 @@ public class TargetUI : MonoBehaviour
 	Color highlightCol = new Color(1, 0.38f, 0.33f, 1);
 	Color numUICol;
 
-	public void MarkCompleted()
+    private void Start()
+    {
+		holder.alpha = 0;
+    }
+
+    public void MarkCompleted()
 	{
 		statusIcon.sprite = completedSprite;
 		statusIcon.rectTransform.eulerAngles = Vector3.forward * 0;
-		holder.alpha = 0.5f;
+		holder.alpha = 0f;
 	}
 
 

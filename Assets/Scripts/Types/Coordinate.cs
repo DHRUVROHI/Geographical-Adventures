@@ -13,7 +13,7 @@ public struct Coordinate
 	public Coordinate(float longitude, float latitude)
 	{
 		this.longitude = longitude;
-		this.latitude = latitude;
+		this.latitude = latitude;	
 	}
 
 	// Return vector2 containing long/lat remapped to range [0,1]

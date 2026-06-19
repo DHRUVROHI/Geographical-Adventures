@@ -22,6 +22,7 @@ public class MainMenu : Menu
 
 	void Start()
 	{
+		Debug.Log("Main menu");
 		version.text = $"Version {Application.version}";
 
 		playButton.onClick.AddListener(PlayGame);
@@ -34,13 +35,14 @@ public class MainMenu : Menu
 	{
 		if (GameController.IsState(GameState.InMainMenu))
 		{
-			player.SetPitch(playerPitch);
+			//player.SetPitch(playerPitch);
 		}
 	}
 
 
-	void PlayGame()
+	public void PlayGame()
 	{
+		Debug.Log("playy time");
 		GameController.StartGame();
 		CloseMenu();
 	}
