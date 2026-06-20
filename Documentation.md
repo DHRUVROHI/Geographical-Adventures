@@ -12,7 +12,7 @@ Unity 2021.3.2f1
 3. Open the main scene
 4. Press Play
 
-5. ## Controls
+## Controls
 WASD - Move
 E - Pick Up / Drop Artifact
 
