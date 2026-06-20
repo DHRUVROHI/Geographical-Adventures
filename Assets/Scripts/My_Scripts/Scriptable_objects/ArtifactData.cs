@@ -9,7 +9,7 @@ public class ArtifactData : ScriptableObject
     public string ArtifactName;
     public string Description;
     public float weight;
-    public Image icon;
+    public Sprite icon;
     public Vector3 holdoffset;
     public float groundoffset;
 

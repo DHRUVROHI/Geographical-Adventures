@@ -72,7 +72,7 @@ public class PickupArtifact : MonoBehaviour
         }
         carriedartifact = nearbyartifact;
         carriedartifact.transform.SetParent(Handsocket);
-        Debug.Log(carriedartifact.name);
+        //Debug.Log(carriedartifact.name);
         carriedartifact.transform.localPosition = carriedartifact.ArtifactData.holdoffset;
        
         if (carriedartifact != null)
@@ -85,9 +85,9 @@ public class PickupArtifact : MonoBehaviour
     public void dropartifact()
     {
         carriedartifact.iscarried = false;
-        Artifact_Dropped?.Invoke(carriedartifact.ArtifactData);
+        Artifact_Dropped?.Invoke(null);
         carriedartifact.transform.SetParent(null);
-        Debug.Log(carriedartifact.name);
+       // Debug.Log(carriedartifact.name);
         carriedartifact = null;
         nearbyartifact = null;
         canpickartifact = false;

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TriangleNet.Smoothing;
@@ -8,7 +9,11 @@ public class Third_person_Camera : MonoBehaviour
     public event System.Action<Camera> gameCameraUpdateComplete;
     public float fovslow;
     public float fovfast;
- 
+    
+
+    public float cameraorbitSpeed = 3f;
+    
+
 
 
     [Header("Alternate View Settings")]
@@ -79,6 +84,8 @@ public class Third_person_Camera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+           
         
     }
 }

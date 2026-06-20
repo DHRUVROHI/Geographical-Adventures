@@ -15,6 +15,6 @@ MonoBehaviour:
   ArtifactName: Sword
   Description: 
   weight: 7
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 916712ab763b8204cbddd8184820acf4, type: 3}
   holdoffset: {x: 0, y: 0, z: 0}
   groundoffset: 0

@@ -7,6 +7,7 @@ public class Monumentinteraction : MonoBehaviour
 
     public static event System.Action<MonumentData> Monumententerregiondata;
     public static event System.Action<MonumentData> Monumentexitrregiondata;
+    Monument currentmonument;
 
 
     // Start is called before the first frame update
@@ -24,14 +25,33 @@ public class Monumentinteraction : MonoBehaviour
     public void OnTriggerEnter(Collider collision)
     {
         Monument monument = collision.GetComponent<Monument>();
-        Monumententerregiondata?.Invoke(monument.monumentdata);
+
+        if (monument != null)
+        {
+          //  Debug.Log("Monument reached");
+            currentmonument = monument;
+            Displayartifactname();
+           
+            
+        }
     }
 
     public void OnTriggerExit(Collider other)
     {
         Monument monument = other.GetComponent<Monument>();
-        //   Monumentexitrregiondata?.Invoke(monument.monumentdata);
-        Monumententerregiondata?.Invoke(null);
 
-}
+        if (monument != null)
+        {
+            monument = null;
+            Monumententerregiondata?.Invoke(null);
+
+        }
+        //   Monumentexitrregiondata?.Invoke(monument.monumentdata);
+
+    }
+
+    public void Displayartifactname()
+    {
+        Monumententerregiondata?.Invoke(currentmonument.monumentdata);
+    }
 }

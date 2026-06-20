@@ -2,7 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
+using DG.Tweening;
 
 public class UI_Manager : MonoBehaviour
 {
@@ -14,6 +14,11 @@ public class UI_Manager : MonoBehaviour
 
     public TMP_Text Monumentname;
     public TMP_Text Monumentcity;
+    
+    public TMP_Text DiscoveryQuest_tajmahal;
+    public TMP_Text DiscoveryQuest_QutubMinar;
+    public TMP_Text DiscoveryQuest_IndiaGate;
+    public TMP_Text DiscoveryQuest_Jamamasjid;
 
 
     public Transform player;
@@ -21,6 +26,11 @@ public class UI_Manager : MonoBehaviour
     Vector2 playerTexCoord;
     float latitude;
     float longitude;
+
+
+
+    public float UIFade_time = 0.5f;
+    
 
     public CanvasGroup Exploration_HUD;
 
@@ -33,9 +43,13 @@ public class UI_Manager : MonoBehaviour
         PickupArtifact.Artifact_D += updateArtifactweight;
         PickupArtifact.Artifact_D += updateArtifactImage;
 
-        Monumentinteraction.Monumentexitrregiondata += updateMonumentname;
-        Monumentinteraction.Monumentexitrregiondata += updateMonumentcity;
-
+        Monumentinteraction.Monumententerregiondata += updateMonumentname;
+        Monumentinteraction.Monumententerregiondata += updateMonumentcity;
+        Monumentinteraction.Monumententerregiondata += Questui;
+        Monumentname.text = "";
+        Monumentcity.text = "";
+        Artifactimage.sprite = null;
+       // DiscoveryQuest_IndiaGate.text = "<color=red>TEST</color>";
 
 
     }
@@ -52,36 +66,140 @@ void Update()
         longitude = playerTexCoord.x;
         latitude = playerTexCoord.y;
         updatePlayerCorrdinates();
+
     }
 
     public void updateArtifactname(ArtifactData artifactData)
     {
-        Artifactname.text = artifactData.ArtifactName;
+        Artifactname.DOKill();
+        Sequence seq = DOTween.Sequence();
+       // Artifactname.transform.localPosition = Vector3.zero;
+        if (artifactData == null)
+        {
+            seq.Join(Artifactname.DOFade(0, UIFade_time));
+           
+          //  seq.Join(Artifactname.transform.DOScale(0.8f, UIFade_time));
+            return;
+        }
+
+        Artifactname.text = " Artifact name "  +  artifactData.ArtifactName;
+        seq.Join(Artifactname.DOFade(1, UIFade_time));
+        // seq.Join(Artifactname.transform.DOScale(1f, UIFade_time));
+       
     }
     public void updateArtifactweight(ArtifactData artifactData)
     {
-        Artifactweight.text = "" + artifactData.weight;
+        
+
+
+        Artifactname.DOKill();
+        Sequence seq = DOTween.Sequence();
+      //  Artifactweight.transform.localPosition = Vector3.zero;
+        if (artifactData == null)
+        {
+            seq.Join(Artifactweight.DOFade(0, UIFade_time));
+         //   seq.Join(Artifactweight.transform.DOScale(0.8f, UIFade_time));
+            return;
+        }
+
+        Artifactweight.text = " Artifact Weight "  +  + artifactData.weight;
+        seq.Join(Artifactweight.DOFade(1, UIFade_time));
+       // seq.Join(Artifactweight.transform.DOScale(1f, UIFade_time));
     }
     public void updateArtifactImage(ArtifactData artifactData)
     {
-        Artifactimage  = artifactData.icon;
+
+
+        // Artifactimage.DOKill();
+        //Sequence seq = DOTween.Sequence();
+        //  Artifactimage.transform.localPosition = Vector3.zero;
+       // Debug.Log("Updating image: " + artifactData.icon.name);
+        if (artifactData == null)
+        {
+            //seq.Join(Artifactimage.DOFade(0, UIFade_time));
+            //seq.Join(Artifactimage.transform.DOScale(0.8f, UIFade_time));
+            return;
+        }
+
+        Artifactimage.sprite = artifactData.icon;
+       // seq.Join(Artifactimage.DOFade(1, UIFade_time));
+        // seq.Join(Artifactimage.transform.DOScale(1f, UIFade_time));
     }
 
     public void updatePlayerCorrdinates()
     {
-        Player_corrdinates.text = " " + $"Lat: {longitude:F2}" + "," + " " + $"Lat: {latitude:F2}";
+        Player_corrdinates.text = " " + $"Long: {longitude:F2}" + "," + " " + $"Lat: {latitude:F2}";
 
     }
 
     public void updateMonumentname(MonumentData monument)
     {
+        Monumentname.DOKill();
+        Sequence seq = DOTween.Sequence();
+        // Debug.Log("updatemonumetname : " + monument.name);
+        if (monument == null)
+        {
+
+            seq.Join(Monumentname.DOFade(0, UIFade_time));
+            seq.Join(Monumentname.transform.DOScale(0.8f, UIFade_time));
+            return;
+        }
+
+        Monumentname.transform.localScale = Vector3.zero;
         Monumentname.text = monument.Monumentname;
+      
+        seq.Join(Monumentname.DOFade(1, UIFade_time));
+        seq.Join(Monumentname.transform.DOScale(1f, UIFade_time));
+        
+
     }
     public void updateMonumentcity(MonumentData monument)
     {
+        Monumentcity.DOKill();
+        Sequence seq = DOTween.Sequence();
+        if (monument == null)
+        {
+           
+            seq.Join(Monumentcity.DOFade(0, UIFade_time));
+            seq.Join(Monumentcity.transform.DOScale(0.8f, UIFade_time));
+            return;
+
+        }
+        Monumentcity.transform.localScale = Vector3.zero;
         Monumentcity.text = "" + monument.Monumentcity;
+
+        seq.Join(Monumentcity.DOFade(1, UIFade_time));
+        seq.Join(Monumentcity.transform.DOScale(1f, UIFade_time));
+        
+
     }
-   
+    public void Questui(MonumentData monument)
+    {
+       // Debug.Log("QuestUI Called");
+        if (monument == null)
+        {
+            return;
+        }
+
+      //  Debug.Log("Monument Name: " + monument.Monumentname);
+
+        if (monument.Monumentname == "India Gate")
+            {
+                DiscoveryQuest_IndiaGate.text =$"<s>{DiscoveryQuest_IndiaGate.text}</s>";
+            }
+            if (monument.Monumentname == "Taj mahal")
+            {
+                DiscoveryQuest_tajmahal.text = $"<s>{DiscoveryQuest_tajmahal.text}</s>";
+            }
+            if (monument.Monumentname == "Jama masjid")
+            {
+                DiscoveryQuest_Jamamasjid.text = $"<s>{DiscoveryQuest_Jamamasjid.text}</s>";
+            }
+            if (monument.Monumentname == "Qutub minar")
+            {
+                DiscoveryQuest_QutubMinar.text = $"<s>{DiscoveryQuest_QutubMinar.text}</s>";
+            }
+        }
+    }
 
 
-}

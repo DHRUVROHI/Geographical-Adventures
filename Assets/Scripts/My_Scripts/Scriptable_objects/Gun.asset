@@ -15,6 +15,6 @@ MonoBehaviour:
   ArtifactName: Gun
   Description: 
   weight: 4
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 4369258b3ce8bc240b2825f56e21e923, type: 3}
   holdoffset: {x: 0, y: 2.29, z: 0}
   groundoffset: 0.91

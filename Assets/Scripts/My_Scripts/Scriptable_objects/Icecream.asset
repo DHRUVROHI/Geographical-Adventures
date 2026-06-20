@@ -15,6 +15,6 @@ MonoBehaviour:
   ArtifactName: Icecream
   Description: 
   weight: 0.5
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 7f1659a189430cf41b21dcab9d5624b9, type: 3}
   holdoffset: {x: 0, y: -0.03, z: 0}
   groundoffset: 2.04

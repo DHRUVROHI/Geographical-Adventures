@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56954998a2a1a294098b88ac688cfe01, type: 3}
   m_Name: IndiaGate
   m_EditorClassIdentifier: 
-  Monumentname: IndiaGate
+  Monumentname: India Gate
   Monumentcity: Delhi

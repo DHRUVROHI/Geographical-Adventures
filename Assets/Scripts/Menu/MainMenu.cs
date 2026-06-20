@@ -22,7 +22,7 @@ public class MainMenu : Menu
 
 	void Start()
 	{
-		Debug.Log("Main menu");
+		//Debug.Log("Main menu");
 		version.text = $"Version {Application.version}";
 
 		playButton.onClick.AddListener(PlayGame);
@@ -42,7 +42,7 @@ public class MainMenu : Menu
 
 	public void PlayGame()
 	{
-		Debug.Log("playy time");
+		//Debug.Log("playy time");
 		GameController.StartGame();
 		CloseMenu();
 	}
