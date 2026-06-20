@@ -42,3 +42,24 @@ E - Pick Up / Drop Artifact
 ### UI System
 - Event-driven HUD updates
 - DOTween transitions
+
+
+
+## Performance Considerations
+
+-Triangle count 824.1k
+-Draw calls  260
+-Texture sizes 18 mb
+
+### Optimization Techniques Used
+- Low-poly assets
+- Reused materials where possible
+- Lightweight UI elements
+- Event-driven UI updates
+- ScriptableObjects for artifact data
+- Occlusion culling 
+
+### Texture Usage
+- 512x512 and 1024x1024 textures used where appropriate
+
+
