@@ -42,7 +42,7 @@ public class Monumentinteraction : MonoBehaviour
 
         if (monument != null)
         {
-            monument = null;
+           // monument = null;
             Monumententerregiondata?.Invoke(null);
 
         }

@@ -48,7 +48,7 @@ public class UI_Manager : MonoBehaviour
         Monumentinteraction.Monumententerregiondata += Questui;
         Monumentname.text = "";
         Monumentcity.text = "";
-        Artifactimage.sprite = null;
+        //Artifactimage.sprite = null;
        // DiscoveryQuest_IndiaGate.text = "<color=red>TEST</color>";
 
 
@@ -56,7 +56,13 @@ public class UI_Manager : MonoBehaviour
 
 // Update is called once per frame
 void Update()
+
     {
+
+        if (player == null) return;
+        if (Exploration_HUD == null) return;
+        if (Player_corrdinates == null) return;
+
         bool uiisactive = GameController.IsState(GameState.Playing);
             {
             Exploration_HUD.alpha = Mathf.SmoothDamp(Exploration_HUD.alpha, uiisactive ? 1 : 0, ref smoothV, smoothTime);
@@ -69,8 +75,23 @@ void Update()
 
     }
 
+    private void OnDestroy()
+    {
+        PickupArtifact.Artifact_D -= updateArtifactname;
+        PickupArtifact.Artifact_D -= updateArtifactweight;
+        PickupArtifact.Artifact_D -= updateArtifactImage;
+
+        Monumentinteraction.Monumententerregiondata -= updateMonumentname;
+        Monumentinteraction.Monumententerregiondata -= updateMonumentcity;
+        Monumentinteraction.Monumententerregiondata -= Questui;
+    }
+
     public void updateArtifactname(ArtifactData artifactData)
     {
+
+        if (Artifactweight == null)
+            return;
+
         Artifactname.DOKill();
         Sequence seq = DOTween.Sequence();
        // Artifactname.transform.localPosition = Vector3.zero;
@@ -89,10 +110,11 @@ void Update()
     }
     public void updateArtifactweight(ArtifactData artifactData)
     {
-        
+        if (Artifactname == null)
+            return;
 
 
-        Artifactname.DOKill();
+        Artifactweight.DOKill();
         Sequence seq = DOTween.Sequence();
       //  Artifactweight.transform.localPosition = Vector3.zero;
         if (artifactData == null)
@@ -108,16 +130,21 @@ void Update()
     }
     public void updateArtifactImage(ArtifactData artifactData)
     {
-
+        if (Artifactimage == null)
+        {
+           // Debug.LogError("Artifactimage reference lost!");
+            return;
+        }
 
         // Artifactimage.DOKill();
         //Sequence seq = DOTween.Sequence();
         //  Artifactimage.transform.localPosition = Vector3.zero;
-       // Debug.Log("Updating image: " + artifactData.icon.name);
+        // Debug.Log("Updating image: " + artifactData.icon.name);
         if (artifactData == null)
         {
             //seq.Join(Artifactimage.DOFade(0, UIFade_time));
             //seq.Join(Artifactimage.transform.DOScale(0.8f, UIFade_time));
+            Artifactimage.sprite = null;
             return;
         }
 
@@ -134,6 +161,9 @@ void Update()
 
     public void updateMonumentname(MonumentData monument)
     {
+        if (Monumentname == null)
+            return;
+
         Monumentname.DOKill();
         Sequence seq = DOTween.Sequence();
         // Debug.Log("updatemonumetname : " + monument.name);
@@ -155,6 +185,9 @@ void Update()
     }
     public void updateMonumentcity(MonumentData monument)
     {
+
+        if (Monumentcity == null)
+            return;
         Monumentcity.DOKill();
         Sequence seq = DOTween.Sequence();
         if (monument == null)
@@ -181,7 +214,13 @@ void Update()
             return;
         }
 
-      //  Debug.Log("Monument Name: " + monument.Monumentname);
+        if (DiscoveryQuest_IndiaGate == null ||
+      DiscoveryQuest_tajmahal == null ||
+      DiscoveryQuest_Jamamasjid == null ||
+      DiscoveryQuest_QutubMinar == null)
+            return;
+
+        //  Debug.Log("Monument Name: " + monument.Monumentname);
 
         if (monument.Monumentname == "India Gate")
             {
