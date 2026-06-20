@@ -47,9 +47,9 @@ E - Pick Up / Drop Artifact
 
 ## Performance Considerations
 
--Triangle count 824.1k
--Draw calls  260
--Texture sizes 18 mb
+- Triangle count 824.1k
+- Draw calls  260
+- Texture sizes 18 mb
 
 ### Optimization Techniques Used
 - Low-poly assets
