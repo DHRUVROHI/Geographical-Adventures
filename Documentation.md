@@ -1,4 +1,4 @@
-##Heritage Explorer
+#Heritage Explorer
 
 ## Overview
 Heritage Explorer is a Unity-based globe exploration game where players discover famous Indian monuments, collect artifacts, and complete exploration objectives.
