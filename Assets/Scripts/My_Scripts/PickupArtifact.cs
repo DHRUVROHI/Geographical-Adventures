@@ -14,10 +14,12 @@ public class PickupArtifact : MonoBehaviour
 
     bool canpickartifact;
     public Transform Handsocket;
+    public Animator pickup;
+    
     
     void Start()
     {
-        
+       pickup = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -28,13 +30,17 @@ public class PickupArtifact : MonoBehaviour
             if (carriedartifact != null)
             {
                 
-                dropartifact();
+                // dropartifact();
+                Invoke("dropartifact", 5f);
+
+                pickup.SetBool("Ispicking", false);
             }
 
             else if (canpickartifact)
             {
-                pickupartifact();
-                
+               Invoke( "pickupartifact" , 3f) ;
+                pickup.SetBool("Ispicking", true);
+
             }
         }
         

@@ -38,6 +38,9 @@ public class Player_Planet_Controller : MonoBehaviour
     float worldRadius;
     public TerrainGeneration.TerrainHeightSettings heightSettings;
 
+    //Animation
+    public Animator runninganim;
+
 
 
 
@@ -52,6 +55,7 @@ public class Player_Planet_Controller : MonoBehaviour
     }
     void Start()
     {
+        runninganim = GetComponentInChildren<Animator>();
         PickupArtifact.Artifact_D += onpickupartifact;
         PickupArtifact.Artifact_Dropped += ondropartifact;
     }
@@ -59,7 +63,11 @@ public class Player_Planet_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+
+        if (Input.GetKeyDown(KeyBindings.Greet))
+        {
+            isgreet();
+        }
         HandleMovement();
     }
     public void onpickupartifact(ArtifactData data)
@@ -81,7 +89,15 @@ public class Player_Planet_Controller : MonoBehaviour
         basetargetspeed = Mathf.MoveTowards(basetargetspeed, desiredspeed - artifactweight, acceleration * Time.deltaTime);
         basetargetspeed = Mathf.Clamp(basetargetspeed, min_speed, max_speed);
         
-     
+        if(move.x> 0 || move.x< 0 || move.y > 0 || move.y < 0  )
+        {
+            runninganim.SetBool("isrunning", true);
+        }
+        else
+        {
+            runninganim.SetBool("isrunning", false);
+        }
+        //runninganim.SetBool("isrunning", false);
     }
     public void HandleMovement()
     {
@@ -140,4 +156,16 @@ public class Player_Planet_Controller : MonoBehaviour
         }
     }
 
+
+    public void isgreet()
+    {
+        runninganim.SetBool("isgreet", true);
+        Invoke("isnotgreet", 3f);
+    }
+
+    public void isnotgreet()
+    {
+        runninganim.SetBool("isgreet", false);
+
+    }
 }

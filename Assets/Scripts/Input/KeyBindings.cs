@@ -10,8 +10,9 @@ public static class KeyBindings
 	public static KeyCode TopDownCamTurnRight = KeyCode.RightArrow;
 	public static KeyCode Escape = KeyCode.Escape;
 	public static KeyCode Interact = KeyCode.E;
+    public static KeyCode Greet = KeyCode.G;
 
-	// ----- Dev Mode -----
-	public static KeyCode ToggleDevMode = KeyCode.LeftBracket;
+    // ----- Dev Mode -----
+    public static KeyCode ToggleDevMode = KeyCode.LeftBracket;
 	public static KeyCode Debug_ToggleLockPlayer = KeyCode.L;
 }

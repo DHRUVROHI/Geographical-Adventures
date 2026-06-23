@@ -16,5 +16,5 @@ MonoBehaviour:
   Description: 
   weight: 7
   icon: {fileID: 21300000, guid: 916712ab763b8204cbddd8184820acf4, type: 3}
-  holdoffset: {x: 0, y: 0, z: 0}
-  groundoffset: 0
+  holdoffset: {x: 1, y: -1.9, z: -0.5}
+  groundoffset: 1.5

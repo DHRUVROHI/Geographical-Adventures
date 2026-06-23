@@ -30,10 +30,10 @@ public class Monumentinteraction : MonoBehaviour
         {
           //  Debug.Log("Monument reached");
             currentmonument = monument;
-            Displayartifactname();
-           
-            
+            Displayartifactname(); 
         }
+
+        
     }
 
     public void OnTriggerExit(Collider other)

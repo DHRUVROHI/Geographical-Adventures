@@ -98,7 +98,7 @@ void Update()
         if (artifactData == null)
         {
             seq.Join(Artifactname.DOFade(0, UIFade_time));
-           
+            Artifactname.text = "";
           //  seq.Join(Artifactname.transform.DOScale(0.8f, UIFade_time));
             return;
         }
@@ -120,6 +120,7 @@ void Update()
         if (artifactData == null)
         {
             seq.Join(Artifactweight.DOFade(0, UIFade_time));
+            Artifactweight.text = "";
          //   seq.Join(Artifactweight.transform.DOScale(0.8f, UIFade_time));
             return;
         }
